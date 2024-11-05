@@ -9,24 +9,22 @@ namespace DI_UD3_2
 {
     internal class Program
     {
-        public delegate bool EsMayorQueDiez(string texto);
+        public delegate bool EsMayorQueDiez(int numero);
 
         public static void Main()
         {
-            EsMayorQueDiez esPalindromo = delegate (string texto)
+            // Método anónimo que verifica si un número es mayor que 10
+            EsMayorQueDiez esMayor = delegate (int numero)
             {
-                string limpio = Regex.Replace(texto, "[^a-zA-Z0-9]", "").ToLower();
-                string invertido = new string(limpio.Reverse().ToArray());
-                return limpio == invertido;
+                return numero > 10;
             };
 
-            string palabra1 = "radar";
-            string palabra2 = "puerta";
-            string frase = "dabale arroz a la zorra el abad";
+            // Pruebas con los números 8 y 15
+            int numero1 = 8;
+            int numero2 = 15;
 
-            Console.WriteLine($"{palabra1} es un palíndromo = {esPalindromo(palabra1)}");
-            Console.WriteLine($"{palabra2} es un palíndromo = {esPalindromo(palabra2)}");
-            Console.WriteLine($"{frase} es un palíndromo = {esPalindromo(frase)}");
+            Console.WriteLine($"{numero1} es mayor que 10: {esMayor(numero1)}");
+            Console.WriteLine($"{numero2} es mayor que 10: {esMayor(numero2)}");
         }
     }
 }
